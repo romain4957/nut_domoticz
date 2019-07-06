@@ -70,18 +70,18 @@ if globals().has_key('logOutFilename') :
 else:
     logging.basicConfig(format=FORMAT,level=logLevel)
 
-#Reset Bluetooth interface, hci0
-os.system("sudo hciconfig hci0 down")
-os.system("sudo hciconfig hci0 up")
+#Reset Bluetooth interface, hci1
+os.system("sudo hciconfig hci1 down")
+os.system("sudo hciconfig hci1 up")
 
 #Make sure device is up
 interface = subprocess.Popen(["sudo hciconfig"], stdout=subprocess.PIPE, shell=True)
 (output, err) = interface.communicate()
 
 if "RUNNING" in output: #Check return of hciconfig to make sure it's up
-    logging.debug('Ok hci0 interface Up n running !')
+    logging.debug('Ok hci1 interface Up n running !')
 else:
-    logging.critical('Error : hci0 interface not Running. Do you have a BLE device connected to hci0 ? Check with hciconfig !')
+    logging.critical('Error : hci1 interface not Running. Do you have a BLE device connected to hci0 ? Check with hciconfig !')
     sys.exit(1)
     
 devId = 0
